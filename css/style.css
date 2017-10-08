@@ -1,3 +1,64 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: blue;
+  font-family: "Helvetica Neue", Helvetica, Arial, serif;
+  color: #00FF0D;
+  text-align: center;
+}
+
+main {
+  max-width: 640px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+
+ul {
+  margin: 0 auto;
+  padding: 0;
+  width: 450px;
+  height: 450px;
+}
+
+li {
+  float: left;
+  width: 145px;
+  height: 145px;
+  font-size: 70px;
+  line-height: 145px;
+  text-align: center;
+  border: 2px solid white;
+  list-style-type: none;
+}
+
+.playAgain {
+  font-size: 20px;
+  background: black;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin: 20px;
+}
+
+button.playWithMe {
+  display:
+}
+
+.animalAnswer {
+  display:none;
+}
+
+.actionAnswer {
+  display:none;
+}
+
+.playAgain {
+  display:none;
+}
+
+.Level {
+
 }
