@@ -2,19 +2,24 @@
   box-sizing: border-box;
 }
 
-body {
-  background: blue;
-  font-family: "Helvetica Neue", Helvetica, Arial, serif;
-  color: #00FF0D;
+header {
+  background: yellow;
   text-align: center;
+}
+
+body {
+  background: green;
+  font-family: "Helvetica Neue", Helvetica, Arial, serif;
+  color: pink;
+  text-align: center;
+  margin: auto;
 }
 
 main {
   max-width: 640px;
-  margin: 50px auto;
-  padding: 30px;
+  margin: 20px auto;
+  padding: 20px;
 }
-
 
 ul {
   margin: 0 auto;
@@ -32,6 +37,7 @@ li {
   text-align: center;
   border: 2px solid white;
   list-style-type: none;
+  margin: auto;
 }
 
 .playAgain {
@@ -43,22 +49,28 @@ li {
   margin: 20px;
 }
 
-button.playWithMe {
-  display:
+.playWithMe {
+  margin: auto;
 }
 
 .animalAnswer {
-  display:none;
+
 }
 
 .actionAnswer {
-  display:none;
+
 }
 
 .playAgain {
-  display:none;
+
 }
 
-.Level {
+.level {
+  font-size: 20px;
+}
 
+footer {
+  text-align: center;
+  background: red;
+  margin: 10 auto;
 }
