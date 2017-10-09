@@ -1,4 +1,4 @@
-// window.onload = init;
+window.onload = init;
 
 function init(){
   $level = $('.span');
@@ -7,24 +7,44 @@ function init(){
   $animalAnswer = $('.animalAnswer');
   $actionAnswer = $('.actionAnswer');
   $playAgain = $('.playAgain');
+  $answers = $('.answers');
 
+  $answers.hide();
+  $playAgain.hide();
+  $playWithMe.hide();
   $windows.on('click', randomAnimal);
 }
 
-const animals = [dog, cat, rabbit, horse, fish]; //add in gifs here as bonus
-const actions = [Pet It, Feed It, Love It, Sing To It, Wash It] //add in gifs here as bonus
-const randomAnimal = animals[Math.floor(animals.length * Math.random())];
+let animals = ['dog', 'cat', 'rabbit', 'horse', 'fish']; //add in gifs here as bonus
+const actions = ['Pet It', 'Feed It', 'Love It', 'Sing To It', 'Wash It']; //add in gifs here as bonus
 let actualAnimalAnswer = [];
-const randomAction = actions[Math.floor(actions.length * Math.random())];
 let actualActionAnswer = [];
-let userAnimalAnswer = []; //push id from animal buttons in here
+let userAnimalAnswer = []; //push id from animal button.s in here
 let userActionAnswer = []; //push id from action buttons in here
 
-function randomAnimal() {
-
+function randomAnimal(e) {
+  let animalRandom = animals[Math.floor(animals.length * Math.random())];
+  actualAnimalAnswer.push(animalRandom);
+  ($(this).text(animalRandom));
+  console.log(animalRandom);
+  //how do you remove it from the animal array after it has pushed to the new answer array?
+  if (actualAnimalAnswer !== 7 && $level.text === 2) {
+    playWithMe.show();
+    playWithMe.on('click', randomAction);
+  } else {
+    actualAnimalAnswer !== 7 && $level.text === 1
+    ($(this).fadeOut(1000));
+  }
 }
 
-function 
+function randomAction() {
+  let actionRandom = actions[Math.floor(actions.length * Math.random())];
+  actualActionAnswer.push(actionRandom);
+  ($(this).text(actionRandom));
+  console.log(actionRandom);
+}
+
+
 
 
 
@@ -63,4 +83,3 @@ function
 //   $submit.off('click');
 //   $display.html('Game Over');
 //   $input.val('');
-// }
