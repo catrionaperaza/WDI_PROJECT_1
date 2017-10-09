@@ -4,7 +4,6 @@ window.onload = init;
 // const domElement = $('.hello');
 // domElement === null
 const animals = ['dog','cat','rabbit','horse','fish','parrot']; //add in gifs here as bonus
-const actions = ['Pet It','Feed It','Love It','Sing To It','Wash It','Bring It For Walk']; //add in gifs here as bonus
 const actualAnimalAnswer = [];
 const actualActionAnswer = [];
 const userAnimalAnswer = []; //push id from animal buttons in here
@@ -15,7 +14,6 @@ let $playWithMe = null;
 let $animalAnswer = null;
 let $actionAnswer = null;
 let $playAgain = null;
-let $answers = null;
 
 
 function init(){
@@ -25,8 +23,8 @@ function init(){
   $animalAnswer = $('.animalAnswer');
   $actionAnswer = $('.actionAnswer');
   $playAgain = $('.playAgain');
-  $answers = $('.answers');
-  $answers.hide();
+  $animalAnswer.hide();
+  $actionAnswer.hide();
   $playAgain.hide();
   $playWithMe.hide();
   $windows.on('click', randomAnimal);
@@ -38,44 +36,42 @@ function randomAnimal() {
   ($(this).text(animalRandom));
   console.log(animalRandom);
   const animalRemove = animals.indexOf(animalRandom);
-  console.log(animalRemove);
   animals.splice(animalRemove,1);
   console.log(animals);
   $playWithMe.show();
-  $playWithMe.on('click', randomAction);
+  console.log($playWithMe);
+  $playWithMe.on('click',chooseAction);
 }
 
 
-function randomAction() {
-  const actionRandom = actions[Math.floor(actions.length * Math.random())];
-  actualActionAnswer.push(actionRandom);
-  ($(this).text(actionRandom));
-  console.log(actionRandom);
-  const actionRemove = actions.indexOf(actionRandom);
-  console.log(actionRemove);
-  actions.splice(actionRemove,1);
-  console.log(actions);
-  if (actions.length>=7) {
-    getAnswer();
-  }       getAnswer();
-}
-
-
-function getAnswer() {
-
-  $answers.show();
-  $answers.on('click', gettingAnswer);
-  function gettingAnswer() {
-    if ($(this) === userAnimalAnswer) {
-      userAnimalAnswer.push($(this).val());
-    } else {
-      userActionAnswer.push($(this).val());
-    }
+function chooseAction() {
+  $actionAnswer.show();
+  $actionAnswer.on('click',logAction);
+  function logAction(e) {
+    const actionAnswers = e.target.id;
+    actualActionAnswer.push(actionAnswers);
+    console.log(actionAnswers);
   }
 }
+// getAnswer();
 
 
-function gameOver() {
-  $windows.off('click');
-  $level.html('Game Over');
-}
+//
+// function getAnswer() {
+//
+//   $answers.show();
+//   $answers.on('click', gettingAnswer);
+//   function gettingAnswer() {
+//     if ($(this) === userAnimalAnswer) {
+//       userAnimalAnswer.push($(this).val());
+//     } else {
+//       userActionAnswer.push($(this).val());
+//     }
+//   }
+// }
+//
+//
+// function gameOver() {
+//   $windows.off('click');
+//   $level.html('Game Over');
+// }

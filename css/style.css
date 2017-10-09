@@ -50,7 +50,9 @@ li {
 }
 
 .playWithMe {
-  margin: auto;
+  width: 60px;
+  height: 60px;
+  font-size: 15px; 
 }
 
 .animalAnswer {
@@ -72,5 +74,5 @@ li {
 footer {
   text-align: center;
   background: red;
-  margin: 10 auto;
+  margin: 30 auto;
 }
