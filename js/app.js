@@ -1,47 +1,62 @@
 window.onload = init;
 
-function init(){
-  $level = $('.span');
-  $windows = $('.windows');
-  $playWithMe = $('.playWithMe');
-  $animalAnswer = $('.animalAnswer');
-  $actionAnswer = $('.actionAnswer');
-  $playAgain = $('.playAgain');
-  $answers = $('.answers');
+console.log('dom has not loaded');
 
+// dom hasn't loaded.
+// const domElement = $('.hello');
+// domElement === null
+const animals = ['dog','cat','rabbit','horse','fish']; //add in gifs here as bonus
+const actions = ['Pet It','Feed It','Love It','Sing To It','Wash It']; //add in gifs here as bonus
+const actualAnimalAnswer = [];
+const actualActionAnswer = [];
+const userAnimalAnswer = []; //push id from animal buttons in here
+const userActionAnswer = []; //push id from action buttons in here
+let $level = null;
+let $windows = null;
+let $playWithMe = null;
+let $animalAnswer = null;
+let $actionAnswer = null;
+let $playAgain = null;
+let $answers = null;
+
+
+function init(){
+  console.log('dom has loaded');
+  const $level = $('.level');
+  const $windows = $('.windows');
+  const $playWithMe = $('.playWithMe');
+  const $animalAnswer = $('.animalAnswer');
+  const $actionAnswer = $('.actionAnswer');
+  const $playAgain = $('.playAgain');
+  const $answers = $('.answers');
+
+  $windows.on('click', randomAnimal);
   $answers.hide();
   $playAgain.hide();
-  $playWithMe.hide();
-  $windows.on('click', randomAnimal);
 }
 
-let animals = ['dog', 'cat', 'rabbit', 'horse', 'fish']; //add in gifs here as bonus
-const actions = ['Pet It', 'Feed It', 'Love It', 'Sing To It', 'Wash It']; //add in gifs here as bonus
-let actualAnimalAnswer = [];
-let actualActionAnswer = [];
-let userAnimalAnswer = []; //push id from animal button.s in here
-let userActionAnswer = []; //push id from action buttons in here
-
-function randomAnimal(e) {
-  let animalRandom = animals[Math.floor(animals.length * Math.random())];
+function randomAnimal() {
+  const animalRandom = animals[Math.floor(animals.length * Math.random())];
   actualAnimalAnswer.push(animalRandom);
   ($(this).text(animalRandom));
   console.log(animalRandom);
-  //how do you remove it from the animal array after it has pushed to the new answer array?
-  if (actualAnimalAnswer !== 7 && $level.text === 2) {
-    playWithMe.show();
-    playWithMe.on('click', randomAction);
-  } else {
-    actualAnimalAnswer !== 7 && $level.text === 1
-    ($(this).fadeOut(1000));
-  }
+  animals.splice(animals.indexOf(animalRandom));
+  $playWithMe.show();
+  $playWithMe.on('click', randomAction);
 }
 
 function randomAction() {
-  let actionRandom = actions[Math.floor(actions.length * Math.random())];
+  const actionRandom = actions[Math.floor(actions.length * Math.random())];
   actualActionAnswer.push(actionRandom);
   ($(this).text(actionRandom));
   console.log(actionRandom);
+  getAnswer();
+}
+
+
+function getAnswer() {
+  $answers.show();
+
 }
 
 
