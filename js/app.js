@@ -1,77 +1,127 @@
 window.onload = init;
 
-// dom hasn't loaded.
-// const domElement = $('.hello');
-// domElement === null
-const animals = ['dog','cat','rabbit','horse','fish','parrot']; //add in gifs here as bonus
+const animals = ['Dog','Cat','Rabbit','Horse','Fish','Bird']; //add in gifs here as bonus
 const actualAnimalAnswer = [];
-const actualActionAnswer = [];
+// const actualActionAnswer = [];
 const userAnimalAnswer = []; //push id from animal buttons in here
-const userActionAnswer = []; //push id from action buttons in here
+// const userActionAnswer = []; //push id from action buttons in here
 let $level = null;
 let $windows = null;
-let $playWithMe = null;
-let $animalAnswer = null;
-let $actionAnswer = null;
+// let $playWithMe = null;
+// let $actionAnswer = null;
 let $playAgain = null;
-
+let $dog = null;
+let $cat = null;
+let $horse = null;
+let $fish = null;
+let $bird = null;
+let $rabbit = null;
+let $answerInstructions = null;
+let $message = null;
+let $body = null;
+let $nextChoice = null; 
 
 function init(){
   $level = $('.level');
   $windows = $('.windows');
-  $playWithMe = $('#playWithMe');
-  $animalAnswer = $('.animalAnswer');
-  $actionAnswer = $('.actionAnswer');
+  // $playWithMe = $('button.playWithMe');
+  // $actionAnswer = $('.actionAnswer');
+  $dog = $('#Dog');
+  $cat = $('#Cat');
+  $rabbit = $('#Rabbit');
+  $dog = $('#Dog');
+  $bird = $('#Bird');
+  $fish = $('#Fish');
+  $horse = $('#Horse');
+  $message = $('.message');
   $playAgain = $('.playAgain');
-  $animalAnswer.hide();
-  $actionAnswer.hide();
+  $answerInstructions = $('.answerInstructions');
+  $body = $('body');
+  // $actionAnswer.hide();
   $playAgain.hide();
-  $playWithMe.hide();
+  // $playWithMe.hide();
+  $answerInstructions.hide();
   $windows.on('click', randomAnimal);
 }
 
 function randomAnimal() {
   const animalRandom = animals[Math.floor(animals.length * Math.random())];
   actualAnimalAnswer.push(animalRandom);
-  ($(this).text(animalRandom));
-  console.log(animalRandom);
   const animalRemove = animals.indexOf(animalRandom);
   animals.splice(animalRemove,1);
   console.log(animals);
-  $playWithMe.show();
-  console.log($playWithMe);
-  $playWithMe.on('click',chooseAction);
-}
-
-
-function chooseAction() {
-  $actionAnswer.show();
-  $actionAnswer.on('click',logAction);
-  function logAction(e) {
-    const actionAnswers = e.target.id;
-    actualActionAnswer.push(actionAnswers);
-    console.log(actionAnswers);
+  ($(this).html(`<p class="text-animal">${animalRandom}</p>`));
+  const newP = $('.text-animal');
+  setTimeout(function () {
+    $(newP).fadeOut();
+  }, 1000);
+  setTimeout(function () {
+    $(newP).remove();
+  }, 1000);
+  console.log(animalRandom);
+  if (animals <= 0) {
+    getAnswer();
   }
 }
-// getAnswer();
 
+// $playWithMe.show();
+// $playWithMe.on('click',chooseAction);
 
-//
-// function getAnswer() {
-//
-//   $answers.show();
-//   $answers.on('click', gettingAnswer);
-//   function gettingAnswer() {
-//     if ($(this) === userAnimalAnswer) {
-//       userAnimalAnswer.push($(this).val());
-//     } else {
-//       userActionAnswer.push($(this).val());
-//     }
+// function chooseAction() {
+//   $actionAnswer.show();
+//   $actionAnswer.on('click',logAction);
+//   function logAction(e) {
+//     const actionAnswers = e.target.id;
+//     actualActionAnswer.push(actionAnswers);
+//     console.log(actualActionAnswer);
 //   }
 // }
-//
-//
-// function gameOver() {
-//   $windows.off('click');
-//   $level.html('Game Over');
-// }
+
+function $assignNames() {
+  $($windows).off('click');
+  $dog.html('Dog');
+  $dog.on('click', push);
+  $cat.html('Cat');
+  $cat.on('click', push);
+  $fish.html('Fish');
+  $fish.on('click', push);
+  $bird.html('Bird');
+  $bird.on('click', push);
+  $horse.html('Horse');
+  $horse.on('click', push);
+  $rabbit.html('Rabbit');
+  $rabbit.on('click', push);
+}
+
+function getAnswer() {
+  console.log('Got to this point');
+  $answerInstructions.show();
+  setTimeout(function () {
+    $($assignNames()).fadeIn();
+  }, 1000);
+}
+
+function push(e) {
+  $message.text('Thanks! Now choose the next animal!');
+  userAnimalAnswer.push(e.target.id);
+  console.log(e.target.id);
+  if (userAnimalAnswer.length === 6) {
+    winner(actualAnimalAnswer, userAnimalAnswer);
+    console.log('Okay 6');
+    console.log(actualAnimalAnswer, userAnimalAnswer);
+  }
+}
+
+function winner(actualAnimalAnswer, userAnimalAnswer) {
+  $answerInstructions.hide();
+  $level.hide();
+  $windows.hide();
+  $body.removeClass('hide-bg');
+  if (actualAnimalAnswer === userAnimalAnswer) {
+    console.log('yes');
+    // $message.html('Well Done! You would make a great pet owner!');
+  } else {
+    console.log('no');
+    // $message.html('Unlucky! I\'m sure you would still make a great pet owner!');
+  }
+}

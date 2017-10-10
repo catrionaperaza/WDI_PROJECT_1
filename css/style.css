@@ -3,22 +3,35 @@
 }
 
 header {
-  background: yellow;
+  background: blue;
   text-align: center;
+  margin:auto;
+}
+h1 {
+  font-size: 30px;
+  color: white;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, serif;
+  color: white;
+  text-align: center;
+  max-height: 700px;
+  background-image: url('http://stuffpoint.com/dogs/image/363170-dogs-pug-close-up.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: white;
 }
 
-body {
-  background: green;
-  font-family: "Helvetica Neue", Helvetica, Arial, serif;
-  color: pink;
-  text-align: center;
-  margin: auto;
+.hide-bg {
+  background-image: none;
 }
 
 main {
   max-width: 640px;
   margin: 20px auto;
   padding: 20px;
+  max-height: 500px;
 }
 
 ul {
@@ -29,16 +42,27 @@ ul {
 }
 
 li {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Window_Porto_Covo_August_2013-2.jpg/1200px-Window_Porto_Covo_August_2013-2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   float: left;
   width: 200px;
   height: 200px;
   font-size: 70px;
-  line-height: 200px;
   text-align: center;
   border: 2px solid white;
   list-style-type: none;
   margin: auto;
 }
+
+.answerInstructions {
+  text-align: center;
+  font-size: 35px;
+  text-transform: capitalize;
+  color: pink;
+}
+
 
 .playAgain {
   font-size: 20px;
@@ -52,27 +76,25 @@ li {
 .playWithMe {
   width: 60px;
   height: 60px;
-  font-size: 15px; 
+  font-size: 15px;
 }
 
 .animalAnswer {
-
+display: inline;
 }
 
 .actionAnswer {
-
+display:inline;
 }
 
-.playAgain {
-
+.message {
+  font-size: 50px;
+  color: white;
 }
 
 .level {
   font-size: 20px;
-}
-
-footer {
-  text-align: center;
-  background: red;
-  margin: 30 auto;
+  color: yellow;
+  text-transform: capitalize;
+  text-transform: bold;
 }
