@@ -68,12 +68,12 @@ li {
 
 
 .playAgain {
-  font-size: 20px;
-  background: black;
-  border: none;
+  font-size: 40px;
+  background: grey;
+  border: red solid 5px;
   color: white;
   cursor: pointer;
-  margin: 20px;
+  margin: 40px;
 }
 
 .playWithMe {
