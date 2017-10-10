@@ -19,7 +19,8 @@ let $rabbit = null;
 let $answerInstructions = null;
 let $message = null;
 let $body = null;
-let $nextChoice = null; 
+let $nextChoice = null;
+let $title = null;
 
 function init(){
   $level = $('.level');
@@ -37,6 +38,8 @@ function init(){
   $playAgain = $('.playAgain');
   $answerInstructions = $('.answerInstructions');
   $body = $('body');
+  $title = $('.title');
+  $nextChoice = $('.nextChoice');
   // $actionAnswer.hide();
   $playAgain.hide();
   // $playWithMe.hide();
@@ -102,26 +105,42 @@ function getAnswer() {
 }
 
 function push(e) {
-  $message.text('Thanks! Now choose the next animal!');
+  $nextChoice.text('Thanks! Now choose the next animal!');
   userAnimalAnswer.push(e.target.id);
   console.log(e.target.id);
   if (userAnimalAnswer.length === 6) {
-    winner(actualAnimalAnswer, userAnimalAnswer);
+    winner();
     console.log('Okay 6');
     console.log(actualAnimalAnswer, userAnimalAnswer);
   }
 }
 
-function winner(actualAnimalAnswer, userAnimalAnswer) {
+function winner() {
   $answerInstructions.hide();
   $level.hide();
   $windows.hide();
+  $nextChoice.hide();
+  $title.hide();
   $body.removeClass('hide-bg');
-  if (actualAnimalAnswer === userAnimalAnswer) {
-    console.log('yes');
-    // $message.html('Well Done! You would make a great pet owner!');
-  } else {
-    console.log('no');
-    // $message.html('Unlucky! I\'m sure you would still make a great pet owner!');
+
+  let toWin = true;
+
+  for (var i = 0; i < userAnimalAnswer.length; i++) {
+    if (actualAnimalAnswer[i].indexOf(userAnimalAnswer[i]) !== -1) {
+      toWin = false;
+      $message.html('Well Done! You would make a great pet owner!');
+    } else {
+      toWin = true;
+      $message.html('Unlucky! I\'m sure you would still make a great pet owner!');
+    }
   }
 }
+
+//   if ($actualAnimalAnswer === $userAnimalAnswer) {
+//     console.log('yes');
+//     $message.html('Well Done! You would make a great pet owner!');
+//   } else {
+//     console.log('no');
+//     $message.html('Unlucky! I\'m sure you would still make a great pet owner!');
+//   }
+// }
