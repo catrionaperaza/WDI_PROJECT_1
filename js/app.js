@@ -48,6 +48,7 @@ function init(){
 }
 
 function randomAnimal() {
+  $title.hide();
   const animalRandom = animals[Math.floor(animals.length * Math.random())];
   actualAnimalAnswer.push(animalRandom);
   const animalRemove = animals.indexOf(animalRandom);
@@ -63,6 +64,7 @@ function randomAnimal() {
   }, 1000);
   console.log(animalRandom);
   if (animals <= 0) {
+    $message.hide();
     getAnswer();
   }
 }
@@ -96,6 +98,12 @@ function $assignNames() {
   $rabbit.on('click', push);
 }
 
+// function(){
+//     //wait for animation to finish before removing classes
+//     window.setTimeout( function(){
+//         element.removeClass('animated ' + animation);
+//     }, 2000);
+
 function getAnswer() {
   console.log('Got to this point');
   $answerInstructions.show();
@@ -105,13 +113,10 @@ function getAnswer() {
 }
 
 function push(e) {
-  $nextChoice.text('Thanks! Now choose the next animal!');
   userAnimalAnswer.push(e.target.id);
   console.log(e.target.id);
   if (userAnimalAnswer.length === 6) {
     winner();
-    console.log('Okay 6');
-    console.log(actualAnimalAnswer, userAnimalAnswer);
   }
 }
 
@@ -123,24 +128,19 @@ function winner() {
   $title.hide();
   $body.removeClass('hide-bg');
 
-  let toWin = true;
+  //win logic not working
+  //text staying at top of box
 
-  for (var i = 0; i < userAnimalAnswer.length; i++) {
-    if (actualAnimalAnswer[i].indexOf(userAnimalAnswer[i]) !== -1) {
-      toWin = false;
-      $message.html('Well Done! You would make a great pet owner!');
-    } else {
-      toWin = true;
+  console.log(actualAnimalAnswer);
+  console.log(userAnimalAnswer);
+  if (userAnimalAnswer === actualAnimalAnswer) {
+    $message.html('Well Done! You would make a great pet owner!');
+    $message.show();
+    console.log('this work');
+    if (userAnimalAnswer !== actualAnimalAnswer){
       $message.html('Unlucky! I\'m sure you would still make a great pet owner!');
+      $message.show();
+      console.log('this too');
     }
   }
 }
-
-//   if ($actualAnimalAnswer === $userAnimalAnswer) {
-//     console.log('yes');
-//     $message.html('Well Done! You would make a great pet owner!');
-//   } else {
-//     console.log('no');
-//     $message.html('Unlucky! I\'m sure you would still make a great pet owner!');
-//   }
-// }

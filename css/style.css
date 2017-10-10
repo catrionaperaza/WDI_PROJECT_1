@@ -6,8 +6,10 @@ header {
   background: blue;
   text-align: center;
   margin:auto;
+  padding: 40px;
 }
-h1 {
+
+.title {
   font-size: 30px;
   color: white;
 }
@@ -49,7 +51,7 @@ li {
   float: left;
   width: 200px;
   height: 200px;
-  font-size: 70px;
+  font-size: 50px;
   text-align: center;
   border: 2px solid white;
   list-style-type: none;
@@ -61,6 +63,7 @@ li {
   font-size: 35px;
   text-transform: capitalize;
   color: pink;
+  padding-top: 15px;
 }
 
 
@@ -88,13 +91,14 @@ display:inline;
 }
 
 .message {
-  font-size: 50px;
+  font-size: 30px;
   color: white;
 }
 
 .level {
-  font-size: 20px;
+  font-size: 30px;
   color: yellow;
   text-transform: capitalize;
   text-transform: bold;
+  padding-top: 15px;
 }
