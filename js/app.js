@@ -21,14 +21,14 @@ function init(){
   $body = $('body');
   $title = $('.title');
   $nextChoice = $('.nextChoice');
-  // $actionAnswer.hide();
-  // $playWithMe.hide();
   $playAgain.hide();
   $answerInstructions.hide();
+  $message.hide();
   assignClick();
 }
 
 function assignClick() {
+  console.log('animalAnswer', actualAnimalAnswer, 'userAnswer', userAnimalAnswer);
   $windows.on('click', randomAnimal);
 }
 
@@ -42,15 +42,14 @@ function randomAnimal() {
   ($(this).html(`<p class="text-animal">${animalRandom}</p>`));
   const newP = $('.text-animal');
   setTimeout(function () {
-    $(newP).fadeOut();
-  }, 1000);
-  setTimeout(function () {
-    $(newP).remove();
+    $(newP).fadeOut(1000, function() {
+      $(newP).remove();
+    });
   }, 1000);
   if (animals <= 0) {
     setTimeout($changeNames,1000);
-    $message.hide();
     $answerInstructions.show();
+    $windows.off('click');
   }
 }
 
@@ -58,7 +57,7 @@ function $changeNames() {
   for (var i = 0; i < $windows.length; i++) {
     $($windows[i]).html(`${$($windows[i]).attr('id')}`);
   }
-    checkMatch();
+  checkMatch();
 }
 
 
@@ -71,42 +70,48 @@ function checkMatch() {
     $title.hide();
     $message.show();
     const $clicked = $(this).attr('id');
+    console.log($clicked);
+    console.log(actualAnimalAnswer);
     if ($clicked === actualAnimalAnswer[userClicks]) {
       console.log('correct');
-      $message.text('correct!');
-      $($message).hide();
-      // userAnimalAnswer.push($clicked);
+      $message.text('Correct! Try the next one!');
+      setTimeout(function () {
+        $($message).hide();
+      }, 1000);
+      userAnimalAnswer.push($clicked);
       console.log(userAnimalAnswer);
       userClicks++;
       if(userAnimalAnswer.length === 6) {
         console.log('game over');
-        $answerInstructions.hide();
+        $message.show();
+        $message.html('Well Done! You got them all correct! You would make a great pet owner!');
         $nextChoice.hide();
         $windows.hide();
         $level.hide();
         $body.removeClass('hide-bg');
-        $message.html('Well Done! You got them all correct! You would make a great pet owner!');
         $playAgain.show();
       }
     } else {
       console.log('wrong');
-      $answerInstructions.hide();
       $nextChoice.hide();
       $windows.hide();
       $level.hide();
       $body.removeClass('hide-bg');
-      $message.text('Uh oh! Wrong answer but nice try! Do you want to play again?');
+      $message.show();
+      $message.html('Uh oh! Wrong answer but nice try! Do you want to play again?');
       $playAgain.show();
     }
   });
+
+  console.log('I\'m running');
   $playAgain.one('click', $playGameAgain);
 }
 
 function $playGameAgain() {
+  userClicks = 0;
   $windows.off('click');
   $windows.text('');
   $title.show();
-  $message.hide();
   actualAnimalAnswer = [];
   userAnimalAnswer = [];
   animals = ['Dog','Cat','Rabbit','Horse','Fish','Bird'];
@@ -115,6 +120,9 @@ function $playGameAgain() {
   $body.addClass('hide-bg');
   $nextChoice.show();
   $playAgain.hide();
+  // $answerInstructions.hide();
+  // $answerInstructions.html('Select the animals in the correct sequence!');
+
 
   setTimeout(() => {
     assignClick();
