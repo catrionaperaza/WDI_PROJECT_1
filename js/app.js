@@ -11,6 +11,7 @@ let $welcomeMessage = null;
 let $gameOutcome = null;
 let $body = null;
 let $correct = null;
+let $playLevel2 = null;
 
 function init(){
   $level = $('.level');
@@ -21,6 +22,9 @@ function init(){
   $body = $('body');
   $correct = $('.correct');
   $gameOutcome = $('.gameOutcome');
+  $playLevel2 = $('.playLevel2');
+  $level.html('Level 1');
+  $playLevel2.hide();
   $playAgain.hide();
   $answerInstructions.hide();
   $correct.hide();
@@ -68,37 +72,50 @@ let userClicks = 0;
 function checkMatch() {
   $windows.one('click', function() {
     const $clicked = $(this).attr('id');
-    console.log($clicked);
-    console.log(actualAnimalAnswer);
     if ($clicked === actualAnimalAnswer[userClicks]) {
       console.log('correct');
       $correct.show();
       setTimeout(function () {
         $($correct).fadeOut();
-      }, 1000);
+      }, 300);
       userAnimalAnswer.push($clicked);
-      console.log(userAnimalAnswer);
       userClicks++;
-      if(userAnimalAnswer.length === 6) {
-        console.log('game over');
-        $gameOutcome.html('Well Done! You got them all correct! You would make a great pet owner!');
-        $windows.hide();
-        $level.hide();
-        $body.removeClass('hide-bg');
-        $playAgain.show();
+      console.log(userAnimalAnswer);
+      if (userAnimalAnswer.length === 6) {
+        nextLevel();
       }
     } else {
       console.log('wrong');
-      $answerInstructions.show();
+      $answerInstructions.hide();
+      $gameOutcome.html('Uh oh! Wrong answer but nice try! Do you want to play again?');
+      $playAgain.html('Play Again?');
+      $playAgain.show();
       $windows.hide();
       $level.hide();
       $body.removeClass('hide-bg');
-      $gameOutcome.html('Uh oh! Wrong answer but nice try! Do you want to play again?');
-      $playAgain.show();
+      $playAgain.one('click', $playGameAgain);
     }
   });
+}
 
-  console.log('I\'m running');
+function nextLevel() {
+  console.log('at next level');
+  $answerInstructions.hide();
+  $gameOutcome.html('Well Done! You got them all correct! You would make a great pet owner!');
+  $windows.hide();
+  $body.removeClass('hide-bg');
+  if ($level.html() === 'Level 1') {
+    console.log('game one over');
+    $playAgain.show();
+    $playAgain.html('Play Level 2?');
+    $level.html('Level 2');
+  }else {
+    console.log('game two over');
+    $playAgain.show();
+    $playAgain.html('Play Again?');
+    console.log('level2');
+    $level.hide();
+  }
   $playAgain.one('click', $playGameAgain);
 }
 
@@ -114,8 +131,7 @@ function $playGameAgain() {
   $level.show();
   $body.addClass('hide-bg');
   $playAgain.hide();
-  $answerInstructions.hide();
-  $welcomeMessage.show(); 
+  $welcomeMessage.show();
 
   setTimeout(() => {
     assignClick();
