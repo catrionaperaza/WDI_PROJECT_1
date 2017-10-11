@@ -58,6 +58,10 @@ li {
   margin: auto;
 }
 
+.selectAnimal {
+  line-height: 200px;
+}
+
 .answerInstructions {
   text-align: center;
   font-size: 35px;
@@ -72,7 +76,7 @@ li {
   background: black;
   color: white;
   cursor: pointer;
-  shape-image-threshold: circle; 
+  shape-image-threshold: circle;
 }
 
 .playWithMe {
