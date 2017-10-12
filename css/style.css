@@ -8,6 +8,8 @@ header {
   margin: 20px;
   padding: 20px;
   line-height: 18px;
+  min-height: 98px;
+  min-width: 920px;
 }
 
 body {
@@ -18,7 +20,6 @@ body {
   font-family: 'VT323', monospace;
 }
 main {
-  padding: 7px;
   height: 400px;
 }
 
@@ -35,7 +36,7 @@ li {
   float: left;
   width: 200px;
   height: 200px;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
   border: 2px solid white;
   list-style-type: none;
@@ -43,24 +44,24 @@ li {
 }
 
 .welcomeMessage {
-  font-size: 35px;
+  font-size: 25px;
   color: white;
 }
 
 .level {
-  font-size: 35px;
-  color: LightSkyBlue;
-  padding: 10px;
-  margin: 10px;
+  font-size: 25px;
+  color: W;
+  padding: 5px;
+  margin: 5px;
 }
 
 .answerInstructions {
   text-align: center;
-  font-size: 35px;
+  font-size: 25px;
   text-transform: capitalize;
-  color: LightSeaGreen;
-  padding: 10px;
-  margin: 10px;
+  color: Purple;
+  padding: 5px;
+  margin: 5px;
   }
 
 /*.selectEmotion {
@@ -124,11 +125,9 @@ li {
 
 .correct {
   text-align: center;
-  font-size: 35px;
+  font-size: 25px;
   text-transform: capitalize;
   color: LightSeaGreen;
-  padding: 10px;
-  margin: 10px;
   }
 
 .oneWrong {
@@ -155,17 +154,20 @@ li {
 
 .playAgain {
   font-size: 35px;
-  background: DarkBlue;
-  color: LightSkyBlue;
+  color: White;
+  padding: 5px;
+  margin: 5px;
 }
 
 footer {
-  background: DarkBlue;
+  background: Purple;
   text-align: center;
-  margin: 30px;
-  padding: 20px;
   line-height: 25px;
   clear: both;
+  min-width: 920px;
+  min-height: 98px;
+  margin: 20px;
+  padding: 20px;
 }
 
 .flash {
