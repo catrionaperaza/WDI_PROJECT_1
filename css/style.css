@@ -6,21 +6,17 @@ header {
   background: DarkBlue;
   text-align: center;
   margin: 20px;
-  padding: 20px;
-  line-height: 18px;
-  min-height: 98px;
+  padding: 10px;
+  height: 150px;
   min-width: 920px;
 }
 
 body {
   color: white;
   text-align: center;
-  height: 1000px;
+  min-height: 660px;
   background-color: LightSteelBlue;
   font-family: 'VT323', monospace;
-}
-main {
-  height: 400px;
 }
 
 ul {
@@ -28,6 +24,14 @@ ul {
   padding: 0;
   width: 400px;
   height: 400px;
+}
+
+.txt-fx1 {
+  line-height: 120px;
+}
+
+.txt-fx2 {
+  line-height: 50px;
 }
 
 li {
@@ -41,32 +45,31 @@ li {
   border: 2px solid white;
   list-style-type: none;
   margin: auto;
+  line-height: 200px;
+}
+
+li.p {
+  position:absolute;
+  margin: 0 auto;
+  width: 100px;
+  text-align: center;
 }
 
 .welcomeMessage {
-  font-size: 25px;
+  font-size: 35px;
   color: white;
-}
-
-.level {
-  font-size: 25px;
-  color: W;
-  padding: 5px;
-  margin: 5px;
+  line-height: 60px;
 }
 
 .answerInstructions {
   text-align: center;
-  font-size: 25px;
+  font-size: 35px;
   text-transform: capitalize;
   color: Purple;
   padding: 5px;
   margin: 5px;
+  line-height: 60px;
   }
-
-/*.selectEmotion {
-  line-height: 300px;
-}*/
 
 #Happy.show-bg {
   background-image: url('https://media.giphy.com/media/l2JhCUkjx82I4IYpy/giphy.gif');
@@ -127,8 +130,10 @@ li {
   text-align: center;
   font-size: 25px;
   text-transform: capitalize;
+  padding: 20px;
   color: LightSeaGreen;
-  }
+  line-height: 60px;
+}
 
 .oneWrong {
   background-image: url('https://media.giphy.com/media/l0G16PO3zsNBcMlIA/giphy.gif');
@@ -157,26 +162,29 @@ li {
   color: White;
   padding: 5px;
   margin: 5px;
+  line-height: 80px;
+}
+
+.level {
+  font-size: 35px;
+  color: W;
+  padding: 5px;
+  margin: 5px;
+  line-height: 80px;
 }
 
 footer {
-  background: Purple;
+  background: SteelBlue;
   text-align: center;
   line-height: 25px;
   clear: both;
   min-width: 920px;
-  min-height: 98px;
+  height: 100px;
   margin: 20px;
-  padding: 20px;
+  padding: 10px;
 }
 
 .flash {
--webkit-animation: flash 2s ease-out;
--webkit-animation-iteration-count: 1;
-}
-
-@-webkit-keyframes flash {
-    0% {background-color: none;}
-    50% {background-color: SeaGreen;}
-    100% {background-color: none;}
+-webkit-animation: flash 3s ease-out;
+-webkit-animation-iteration-count: 2;
 }

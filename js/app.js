@@ -35,6 +35,8 @@ function init(){
   $welcomeMessage.show();
   $correct.hide();
   $level2windows.hide();
+  $gameOutcome.hide();
+  $windows.addClass('txt-fx1');
   assignClick();
 }
 
@@ -76,23 +78,24 @@ function buildLevel(emotions, event) {
 function $changeNames() {
   for (var i = 0; i < $windows.length; i++) {
     $($windows[i]).html(`${$($windows[i]).attr('id')}`);
-    $windows.addClass('selectEmotion');
-    $windows.addClass('show-bg');
+    $($windows).addClass('flash');
+    $($windows).addClass('show-bg');
   }
   checkMatch();
-  $($windows).addClass('flash');
 }
 
 let userClicks = 0;
 
 function checkMatch() {
-  $windows.one('click', function(e) {
-    const $clicked = $(event.target).attr('id');
+  $windows.one('click', function() {
+    const $clicked = $($(this)).attr('id');
+    console.log($clicked);
     if ($clicked === actualEmotionAnswer[userClicks]) {
+      console.log('correct answer');
       $correct.show();
       setTimeout(function () {
         $($correct).fadeOut();
-      }, 300);
+      }, 1000);
       userEmotionAnswer.push($clicked);
       userClicks++;
 
@@ -102,81 +105,85 @@ function checkMatch() {
       } else if (currentLevel === 2 && userEmotionAnswer.length === 9) {
         $correct.hide();
         nextLevel();
-      } else {
-        console.log('wrong');
-        $welcomeMessage.hide();
-        $gameOutcome.html('Wrong answer! Have another go!');
-        $playAgain.html('Play Again?');
-        $playAgain.show();
-        $windows.hide();
-        $level2windows.hide();
-        $level.hide();
-        currentLevel = 1;
-        $($level).html(`Level ${currentLevel}`);
-        $main.addClass('oneWrong');
-        $playAgain.one('click', $playGameAgain);
       }
-    }
-  }
-
-  function nextLevel() {
-    $level.hide();
-    $welcomeMessage.hide();
-    $windows.hide();
-    $level2windows.hide();
-    $main.addClass('allCorrect');
-    $gameOutcome.html('Boom! You got them all correct!');
-
-    if (currentLevel === 1) {
-      $playAgain.show();
-      $playAgain.html('Play Level 2?');
-      setTimeout(function () {
-        currentLevel = 2;
-        $($level).html(`Level ${currentLevel}`);
-      }, 1000);
-      $playAgain.one('click', $playGameAgain);
     } else {
-      $playAgain.show();
+      $welcomeMessage.hide();
+      $gameOutcome.show();
+      $gameOutcome.html('Wrong answer! Have another go!');
       $playAgain.html('Play Again?');
+      $playAgain.show();
+      $windows.hide();
+      $level2windows.hide();
+      $level.hide();
       currentLevel = 1;
       $($level).html(`Level ${currentLevel}`);
-      $level.hide();
+      $main.addClass('oneWrong');
       $playAgain.one('click', $playGameAgain);
-      $level2windows.hide();
     }
-  }
+  });
+}
 
-  function $playGameAgain() {
-    $($main).removeClass();
-    userClicks = 0;
-    $windows.off('click');
-    $windows.text('');
-    $gameOutcome.text('');
-    actualEmotionAnswer = [];
-    userEmotionAnswer = [];
-    emotions = ['Happy','Sad','Excited','Bored'];
-    emotionsL2 = ['Happy','Sad','Excited','Bored','Angry','Proud','Pensive','Tired','Hungry'];
-    $windows.show();
-    $level2windows.hide();
-    $level.show();
-    $playAgain.hide();
-    $welcomeMessage.show();
-    $welcomeMessage.html('Click on each box, try to remember the sequence!');
-    $windows.removeClass('selectEmotion');
+function nextLevel() {
+  $level.hide();
+  $welcomeMessage.hide();
+  $windows.hide();
+  $level2windows.hide();
+  $main.addClass('allCorrect');
+  $gameOutcome.show();
+  $gameOutcome.html('Boom! You got them all correct!');
 
-    if (currentLevel === 2) {
-      $windows.css('width', `${400/3}px`);
-      $windows.css('height', `${400/3}px`);
-      $windows.removeClass('show-bg');
-      $level2windows.show();
-    } else {
-      $windows.css('width', `${400/2}px`);
-      $windows.css('height', `${400/2}px`);
-      $windows.removeClass('show-bg');
-    }
-    setTimeout(() => {
-      assignClick();
+  if (currentLevel === 1) {
+    $playAgain.show();
+    $playAgain.html('Play Level 2?');
+    setTimeout(function () {
+      currentLevel = 2;
+      $($level).html(`Level ${currentLevel}`);
     }, 1000);
+    $playAgain.one('click', $playGameAgain);
+  } else {
+    $playAgain.show();
+    $playAgain.html('Play Again?');
+    currentLevel = 1;
+    $($level).html(`Level ${currentLevel}`);
+    $level.hide();
+    $playAgain.one('click', $playGameAgain);
+    $level2windows.hide();
   }
-});
+}
+
+function $playGameAgain() {
+  $($main).removeClass();
+  userClicks = 0;
+  $windows.off('click');
+  $windows.text('');
+  $gameOutcome.text('');
+  $gameOutcome.hide();
+  actualEmotionAnswer = [];
+  userEmotionAnswer = [];
+  emotions = ['Happy','Sad','Excited','Bored'];
+  emotionsL2 = ['Happy','Sad','Excited','Bored','Angry','Proud','Pensive','Tired','Hungry'];
+  $windows.show();
+  $level2windows.hide();
+  $level.show();
+  $playAgain.hide();
+  $welcomeMessage.show();
+  $welcomeMessage.html('Click on each box, try to remember the sequence!');
+
+  if (currentLevel === 2) {
+    $windows.css('width', `${400/3}px`);
+    $windows.css('height', `${400/3}px`);
+    $windows.removeClass('show-bg');
+    $level2windows.show();
+    $windows.removeClass('txt-fx1');
+    $windows.addClass('txt-fx2'); //added this !
+  } else {
+    $windows.css('width', `${400/2}px`);
+    $windows.css('height', `${400/2}px`);
+    $windows.removeClass('show-bg');
+    $windows.addClass('txt-fx1');
+    $windows.removeClass('txt-fx2');
+  }
+  setTimeout(() => {
+    assignClick();
+  }, 1000);
 }
