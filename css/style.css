@@ -3,53 +3,35 @@
 }
 
 header {
-  background: blue;
+  background: DarkBlue;
   text-align: center;
-  margin:auto;
-  padding: 40px;
+  margin: 20px;
+  padding: 20px;
+  line-height: 18px;
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, serif;
   color: white;
   text-align: center;
-  max-height: 700px;
-  background-color: white;
+  height: 1000px;
+  background-color: LightSteelBlue;
+  font-family: 'VT323', monospace;
 }
-
-.oneWrong {
-  background-image: url('https://media.giphy.com/media/l0G16PO3zsNBcMlIA/giphy.gif');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.allCorrect {
-  background-image: url('https://media.giphy.com/media/d31w24psGYeekCZy/giphy.gif');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 main {
-  max-width: 640px;
-  margin: 20px auto;
-  padding: 20px;
-  max-height: 500px;
+  padding: 7px;
+  height: 400px;
 }
 
 ul {
   margin: 0 auto;
   padding: 0;
   width: 600px;
-  height: 600px;
+  /*height: 600px;*/
 }
 
 li {
-  background-image: url('https://media.giphy.com/media/138soHYfxnxfbi/giphy.gif');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: SeaGreen;
+  opacity: 0.8;
   float: left;
   width: 200px;
   height: 200px;
@@ -58,22 +40,34 @@ li {
   border: 2px solid white;
   list-style-type: none;
   margin: auto;
+  line-height: 100px;
 }
 
-.level2 {
-  
+.welcomeMessage {
+  font-size: 35px;
+  color: white;
+  padding: 10px;
+  margin: 10px;
 }
 
-.selectEmotion {
-  line-height: 200px;
+.level {
+  font-size: 35px;
+  color: LightSkyBlue;
+  padding: 10px;
+  margin: 10px;
 }
 
 .answerInstructions {
   text-align: center;
   font-size: 35px;
   text-transform: capitalize;
-  color: pink;
-  padding-top: 15px;
+  color: LightSeaGreen;
+  padding: 10px;
+  margin: 10px;
+  }
+
+.selectEmotion {
+  line-height: 300px;
 }
 
 #Happy.show-bg {
@@ -95,13 +89,13 @@ li {
   background-size: cover;
 }
 #Bored.show-bg {
-  background-image: url('https://media.giphy.com/media/Vi4MRwWi9sYpi/giphy.gif');
+  background-image: url('https://media.giphy.com/media/3orif0olmGNHtrBnXO/giphy.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 #Angry.show-bg {
-  background-image: url('https://media.giphy.com/media/3orif0olmGNHtrBnXO/giphy.gif');
+  background-image: url('https://media.giphy.com/media/Vi4MRwWi9sYpi/giphy.gif');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -112,26 +106,78 @@ li {
   background-repeat: no-repeat;
   background-size: cover;
 }
+#Pensive.show-bg {
+  background-image: url('https://media.giphy.com/media/l0MYDolXmglkqzl1C/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Tired.show-bg {
+  background-image: url('https://media.giphy.com/media/6uMqzcbWRhoT6/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Hungry.show-bg {
+  background-image: url('https://media.giphy.com/media/l0MYylLtnC1ADCGys/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.correct {
+  text-align: center;
+  font-size: 35px;
+  text-transform: capitalize;
+  color: LightSeaGreen;
+  padding: 10px;
+  margin: 10px;
+  }
+
+.oneWrong {
+  background-image: url('https://media.giphy.com/media/l0G16PO3zsNBcMlIA/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+
+.allCorrect {
+  background-image: url('https://media.giphy.com/media/3o6ZthPn8PGzFLEyFW/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+}
+
+.gameOutcome {
+  font-size: 35px;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+}
 
 
 .playAgain {
-  font-size: 40px;
-  background: black;
-  color: white;
-  cursor: pointer;
-  shape-image-threshold: circle;
+  font-size: 35px;
+  background: DarkBlue;
+  color: LightSkyBlue;
 }
 
-
-.welcomeMessage {
-  font-size: 30px;
-  color: white;
+footer {
+  background: DarkBlue;
+  text-align: center;
+  margin: 30px;
+  padding: 20px;
+  line-height: 25px;
+  clear: both;
 }
 
-.level {
-  font-size: 30px;
-  color: yellow;
-  text-transform: capitalize;
-  text-transform: bold;
-  padding-top: 15px;
+.flash {
+-webkit-animation: flash 2s ease-out;
+-webkit-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes flash {
+    0% {background-color: none;}
+    50% {background-color: SeaGreen;}
+    100% {background-color: none;}
 }

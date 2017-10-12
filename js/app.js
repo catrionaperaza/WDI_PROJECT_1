@@ -1,7 +1,7 @@
 window.onload = init;
 
 let emotions = ['Happy','Sad','Excited','Bored','Angry','Proud'];
-let emotionsL2 = ['Happy','Sad','Excited','Bored','Angry','Proud','beep','beep2','beep3'];
+let emotionsL2 = ['Happy','Sad','Excited','Bored','Angry','Proud','Pensive','Tired','Hungry'];
 let actualEmotionAnswer = [];
 let userEmotionAnswer = [];
 
@@ -31,7 +31,8 @@ function init(){
   currentLevel = 'Level 1';
   $level.html(currentLevel);
   $playLevel2.hide();
-  $playAgain.hide();
+  $playAgain.show(); //change back to hide
+  $playAgain.html('Play Again?');
   $windows.removeClass('show-bg');
   $answerInstructions.hide();
   $correct.hide();
@@ -44,11 +45,9 @@ function assignClick() {
 }
 
 function randomEmotion(e) {
-  console.log($level.html());
   if (currentLevel === 'Level 1') {
     buildLevel(emotions, e);
   } else if (currentLevel === 'Level 2') {
-    console.log('randomEmotion - Level 2');
     buildLevel(emotionsL2, e);
   }
 }
@@ -58,9 +57,9 @@ function buildLevel(emotions, event) {
   const emotionRemove = emotions.indexOf(emotionRandom);
   emotions.splice(emotionRemove,1);
   actualEmotionAnswer.push(emotionRandom);
+  console.log(actualEmotionAnswer);
   $(event.target).html(`<p class="text-emotion">${emotionRandom}</p>`);
   const newP = $('.text-emotion');
-  console.log(actualEmotionAnswer);
   setTimeout(function () {
     $(newP).fadeOut(1000, function() {
       $(newP).remove();
@@ -82,6 +81,7 @@ function $changeNames() {
     $windows.addClass('show-bg');
   }
   checkMatch();
+  $($windows).addClass('flash');
 }
 
 let userClicks = 0;
@@ -90,7 +90,6 @@ function checkMatch() {
   $windows.one('click', function() {
     const $clicked = $(this).attr('id');
     if ($clicked === actualEmotionAnswer[userClicks]) {
-      console.log('correct');
       $correct.show();
       setTimeout(function () {
         $($correct).fadeOut();
@@ -98,19 +97,15 @@ function checkMatch() {
       userEmotionAnswer.push($clicked);
       userClicks++;
 
-      console.log(userEmotionAnswer);
-      console.log(currentLevel);
       if (currentLevel === 'Level 1' && userEmotionAnswer.length === 6) {
         nextLevel();
       } else if (currentLevel === 'Level 2' && userEmotionAnswer.length === 9) {
         nextLevel();
-      } else {
-        console.log('not at 6 yet');
       }
     } else {
       console.log('wrong');
       $answerInstructions.hide();
-      $gameOutcome.html('Uh oh! Wrong answer but nice try! Do you want to play again?');
+      $gameOutcome.html('Wrong answer! Have another go!');
       $playAgain.html('Play Again?');
       $playAgain.show();
       $windows.hide();
@@ -125,16 +120,14 @@ function checkMatch() {
 }
 
 function nextLevel() {
-  console.log('at next level');
   $level.hide();
   $answerInstructions.hide();
-  $gameOutcome.html('Well Done! You got them all correct! You are in touch with your emotions!');
+  $gameOutcome.html('Boom! You got them all correct!');
   $windows.hide();
   $level2windows.hide();
   $main.addClass('allCorrect');
 
   if (currentLevel === 'Level 1') {
-    console.log('game one over');
     $playAgain.show();
     $playAgain.html('Play Level 2?');
     setTimeout(function () {
@@ -143,7 +136,6 @@ function nextLevel() {
     }, 1000);
     $playAgain.one('click', $playGameAgain);
   } else {
-    console.log('game two over');
     $playAgain.show();
     $playAgain.html('Play Again?');
     currentLevel = 'Level 1';
@@ -163,7 +155,7 @@ function $playGameAgain() {
   actualEmotionAnswer = [];
   userEmotionAnswer = [];
   emotions = ['Happy','Sad','Excited','Bored','Angry','Proud'];
-  emotionsL2 = ['Happy','Sad','Excited','Bored','Angry','Proud','beep','beep2','beep3'];
+  emotionsL2 = ['Happy','Sad','Excited','Bored','Angry','Proud','Pensive','Tired','Hungry'];
   $windows.show();
   $level2windows.hide();
   $level.show();
@@ -171,8 +163,10 @@ function $playGameAgain() {
   $welcomeMessage.show();
   $welcomeMessage.html('Click on each box to reveal an emotion! How many can you remember?');
   $windows.removeClass('selectEmotion');
-  $windows.removeClass('show-bg');
   if (currentLevel === 'Level 2') {
+    $windows.css('width', `${200/2}px`);
+    $windows.css('height', `${200/2}px`);
+    $windows.removeClass('show-bg');
     $level2windows.show();
   }
 
