@@ -1,9 +1,9 @@
 window.onload = init;
 
-let animals = ['Dog','Cat','Rabbit','Horse','Fish','Bird']; //add in gifs here as bonus
-let animalsL2 = ['Dog','Cat','Rabbit','Horse','Fish','Bird', 'Dog','Cat','Rabbit','Horse','Fish','Bird'];
-let actualAnimalAnswer = [];
-let userAnimalAnswer = [];
+let emotions = ['Dog','Cat','Rabbit','Horse','Fish','Bird']; //add in gifs here as bonus
+let emotionsL2 = ['Dog','Cat','Rabbit','Horse','Fish','Bird','Dog','Cat','Rabbit','Horse','Fish','Bird'];
+let actualEmotionAnswer = [];
+let userEmotionAnswer = [];
 
 let $level = null;
 let $windows = null;
@@ -30,43 +30,40 @@ function init(){
   $level.html(currentLevel);
   $playLevel2.hide();
   $playAgain.hide();
+  $windows.removeClass('hide-bg');
   $answerInstructions.hide();
   $correct.hide();
   assignClick();
 }
 
 function assignClick() {
-  $windows.on('click', randomAnimal);
+  $windows.on('click', randomEmotion);
 }
 
-function randomAnimal() {
-console.log($level.html());
+function randomEmotion(e) {
+  console.log($level.html());
   if (currentLevel === 'Level 1') {
-    buildLevel(animals)
+    buildLevel(emotions, e);
   } else if (currentLevel === 'Level 2') {
-console.log('randomAnimal - Level 2')
-    buildLevel(animalsL2)
+    console.log('randomEmotion - Level 2');
+    buildLevel(emotionsL2, e);
   }
 }
 
-function buildLevel(animals) {
-  const animalRandom = animals[Math.floor(animals.length * Math.random())];
-  const animalRemove = animals.indexOf(animalRandom);
-  animals.splice(animalRemove,1);
-  actualAnimalAnswer.push(animalRandom);
-console.log(actualAnimalAnswer);
-console.log(`${currentLevel} random animal working`);
-console.log($(this))
-  $(this).html(`<p class="text-animal">${animalRandom}</p>`);
-console.log('AFTER', $(this))
-  const newP = $('.text-animal');
+function buildLevel(emotions, event) {
+  const emotionRandom = emotions[Math.floor(emotions.length * Math.random())];
+  const emotionRemove = emotions.indexOf(emotionRandom);
+  emotions.splice(emotionRemove,1);
+  actualEmotionAnswer.push(emotionRandom);
+  $(event.target).html(`<p class="text-emotion">${emotionRandom}</p>`);
+  const newP = $('.text-emotion');
 
   setTimeout(function () {
     $(newP).fadeOut(1000, function() {
       $(newP).remove();
     });
   }, 1000);
-  if (animals <= 0) {
+  if (emotions <= 0) {
     setTimeout($changeNames,1000);
     $answerInstructions.show();
     $windows.off('click');
@@ -74,10 +71,12 @@ console.log('AFTER', $(this))
   }
 }
 
+
 function $changeNames() {
   for (var i = 0; i < $windows.length; i++) {
     $($windows[i]).html(`${$($windows[i]).attr('id')}`);
-    $windows.addClass('selectAnimal');
+    $windows.addClass('selectEmotion');
+    $windows.addClass('hide-bg');
   }
   checkMatch();
 }
@@ -87,20 +86,20 @@ let userClicks = 0;
 function checkMatch() {
   $windows.one('click', function() {
     const $clicked = $(this).attr('id');
-    if ($clicked === actualAnimalAnswer[userClicks]) {
-console.log('correct');
+    if ($clicked === actualEmotionAnswer[userClicks]) {
+      console.log('correct');
       $correct.show();
       setTimeout(function () {
         $($correct).fadeOut();
       }, 300);
-      userAnimalAnswer.push($clicked);
+      userEmotionAnswer.push($clicked);
       userClicks++;
 
-console.log(userAnimalAnswer);
-console.log(currentLevel)
-      if (currentLevel === 'Level 1' && userAnimalAnswer.length === 6) {
+      console.log(userEmotionAnswer);
+      console.log(currentLevel);
+      if (currentLevel === 'Level 1' && userEmotionAnswer.length === 6) {
         nextLevel();
-      } else if ($level.html() === 'Level 2' && userAnimalAnswer.length === 12) {
+      } else if ($level.html() === 'Level 2' && userEmotionAnswer.length === 12) {
         nextLevel();
       } else {
         console.log('Correct, keep playing...');
@@ -129,7 +128,7 @@ function nextLevel() {
   $body.removeClass('hide-bg');
 
   if (currentLevel === 'Level 1') {
-console.log('game one over');
+    console.log('game one over');
     $playAgain.show();
     $playAgain.html('Play Level 2?');
     setTimeout(function () {
@@ -138,10 +137,10 @@ console.log('game one over');
     }, 1000);
     $playAgain.one('click', $playGameAgain);
   } else {
-console.log('game two over');
+    console.log('game two over');
     $playAgain.show();
     $playAgain.html('Play Again?');
-console.log('level2');
+    console.log('level2');
     $level.hide();
     $playAgain.one('click', $playGameAgain);
   }
@@ -155,14 +154,15 @@ function $playGameAgain() {
   actualAnimalAnswer = [];
   userAnimalAnswer = [];
   animals = ['Dog','Cat','Rabbit','Horse','Fish','Bird'];
-  animalsL2 = ['Dog','Cat','Rabbit','Horse','Fish','Bird', 'Dog','Cat','Rabbit','Horse','Fish','Bird'];
+  animalsL2 = ['Dog','Cat','Rabbit','Horse','Fish','Bird','Dog','Cat','Rabbit','Horse','Fish','Bird'];
   $windows.show();
   $level.show();
   $body.addClass('hide-bg');
   $playAgain.hide();
   $welcomeMessage.show();
   $welcomeMessage.html('Click on each box to reveal an animal! How many can you remember?');
-  $windows.removeClass('selectAnimal');
+  $windows.removeClass('selectEmotion');
+  $windows.removeClass('hide-bg');
 
   setTimeout(() => {
     assignClick();

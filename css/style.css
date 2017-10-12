@@ -58,7 +58,7 @@ li {
   margin: auto;
 }
 
-.selectAnimal {
+.selectEmotion {
   line-height: 200px;
 }
 
@@ -70,6 +70,43 @@ li {
   padding-top: 15px;
 }
 
+#Happy.hide-bg {
+  background-image: url('https://media.giphy.com/media/l2JhCUkjx82I4IYpy/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Sad.hide-bg {
+  background-image: url('https://media.giphy.com/media/k61nOBRRBMxva/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Excited.hide-bg {
+  background-image: url('https://media.giphy.com/media/bU3fK8ZpMYEFO/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Bored.hide-bg {
+  background-image: url('https://media.giphy.com/media/Vi4MRwWi9sYpi/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Angry.hide-bg {
+  background-image: url('https://media.giphy.com/media/3orif0olmGNHtrBnXO/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#Proud.hide-bg {
+  background-image: url('https://media.giphy.com/media/9Q249Qsl5cfLi/giphy.gif');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 .playAgain {
   font-size: 40px;
@@ -77,16 +114,6 @@ li {
   color: white;
   cursor: pointer;
   shape-image-threshold: circle;
-}
-
-.playWithMe {
-  width: 60px;
-  height: 60px;
-  font-size: 15px;
-}
-
-.animalAnswer {
-display: inline;
 }
 
 
