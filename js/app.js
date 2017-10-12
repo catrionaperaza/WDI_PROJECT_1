@@ -36,7 +36,6 @@ function init(){
   $correct.hide();
   $level2windows.hide();
   $gameOutcome.hide();
-  $windows.addClass('txt-fx1');
   assignClick();
 }
 
@@ -174,14 +173,10 @@ function $playGameAgain() {
     $windows.css('height', `${400/3}px`);
     $windows.removeClass('show-bg');
     $level2windows.show();
-    $windows.removeClass('txt-fx1');
-    $windows.addClass('txt-fx2'); //added this !
   } else {
     $windows.css('width', `${400/2}px`);
     $windows.css('height', `${400/2}px`);
     $windows.removeClass('show-bg');
-    $windows.addClass('txt-fx1');
-    $windows.removeClass('txt-fx2');
   }
   setTimeout(() => {
     assignClick();

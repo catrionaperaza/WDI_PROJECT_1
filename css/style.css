@@ -5,10 +5,11 @@
 header {
   background: DarkBlue;
   text-align: center;
-  margin: 20px;
-  padding: 10px;
+  margin: 20px auto;
+  padding: auto;
   height: 150px;
-  min-width: 920px;
+  max-width: 900px;
+  min-width: 600px;
 }
 
 body {
@@ -26,12 +27,15 @@ ul {
   height: 400px;
 }
 
-.txt-fx1 {
-  line-height: 120px;
-}
-
-.txt-fx2 {
-  line-height: 50px;
+.text-emotion {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: auto;
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
 }
 
 li {
@@ -46,14 +50,9 @@ li {
   list-style-type: none;
   margin: auto;
   line-height: 200px;
+  position: relative;
 }
 
-li.p {
-  position:absolute;
-  margin: 0 auto;
-  width: 100px;
-  text-align: center;
-}
 
 .welcomeMessage {
   font-size: 35px;
@@ -69,7 +68,7 @@ li.p {
   padding: 5px;
   margin: 5px;
   line-height: 60px;
-  }
+}
 
 #Happy.show-bg {
   background-image: url('https://media.giphy.com/media/l2JhCUkjx82I4IYpy/giphy.gif');
@@ -167,8 +166,8 @@ li.p {
 
 .level {
   font-size: 35px;
-  color: W;
-  padding: 5px;
+  color: White;
+  padding: -55px 5px 10px 5px;
   margin: 5px;
   line-height: 80px;
 }
@@ -178,13 +177,14 @@ footer {
   text-align: center;
   line-height: 25px;
   clear: both;
-  min-width: 920px;
+  max-width: 900px;
+  min-width: 600px;
   height: 100px;
-  margin: 20px;
-  padding: 10px;
+  margin: 20px auto;
+  padding: auto;
 }
 
 .flash {
--webkit-animation: flash 3s ease-out;
--webkit-animation-iteration-count: 2;
+  -webkit-animation: flash 3s ease-out;
+  -webkit-animation-iteration-count: 2;
 }
